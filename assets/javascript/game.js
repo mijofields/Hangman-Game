@@ -15,7 +15,7 @@ var guessesLeft = 7;
         // var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 
 
-        // check that guess is only letters.  No numbers or special characters allwerd.
+        // check that guess is only letters.  No numbers or special characters allowed.
 
 
 
@@ -29,6 +29,10 @@ var guessesLeft = 7;
 
    				function startGame () {
 
+   					underScores = [];
+   					wrongLetter = [];
+   					guessesLeft = 7;
+
         		    for (var i = 0; i < randomWord.length; i++)
 				{
 					underScores[i] = "_";
@@ -40,6 +44,29 @@ var guessesLeft = 7;
 
 
 			}
+
+				document.onkeyup = function(event) {
+
+				var userInput = String.fromCharCode(event.keyCode).toLowerCase();
+
+		if (userInput === "a" || userInput === "b" || userInput === "c" || userInput === "d" || userInput === "e" || userInput === "f"
+		|| userInput === "g" || userInput === "h" || userInput === "i" || userInput === "j" || userInput === "k" 
+        || userInput === "l" || userInput === "m" || userInput === "n" || userInput === "o" || userInput === "p" 
+        || userInput === "q" || userInput === "r" || userInput === "s" || userInput === "t" || userInput === "u" 
+        || userInput === "v" || userInput === "w" || userInput === "x" || userInput === "y" || userInput === "z") {
+
+				document.getElementById('warning').innerHTML = "";
+
+				}
+
+				else{
+
+					document.getElementById('warning').innerHTML = "This is a word guessing game, letters only please...";
+				}
+				
+
+			};
+
 
 
 			startGame();

@@ -2,3 +2,12 @@ h1, p{
 
 	font-family: 'Russo One', sans-serif;
 }
+
+
+#warning{
+
+	font-family: 'Permanent Marker', cursive;
+	color: red;
+	text-decoration: underline;
+
+}
