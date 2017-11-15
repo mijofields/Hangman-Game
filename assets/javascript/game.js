@@ -9,24 +9,7 @@ var underScores = [];
 var wrongLetter = [];
 var guessesLeft = 7;
 var lettersUsed = [];
-
-
-
-// Determine which key was pressed, make it lowercase, and set it to the userInput variable.
-        // var userInput = String.fromCharCode(event.keyCode).toLowerCase();
-
-
-        // check that guess is only letters.  No numbers or special characters allowed.
-
-
-
-        // if (userInput === "a" || userInput === "b" userInput === "c" || userInput === "d" || userInput === "e" || userInput === "f" 
-        // || userInput === "g" || userInput === "h" || userInput === "i" || userInput === "j" || userInput === "k" 
-        // || userInput === "l" || userInput === "m" || userInput === "n" || userInput === "o" || userInput === "p" 
-        // || userInput === "q" || userInput === "r" || userInput === "s" || userInput === "t" || userInput === "u" 
-        // || userInput === "v" || userInput === "w" || userInput === "x" || userInput === "y" || userInput === "z")
-
-        		//chooses a random word from the wordArray and then pushes the number of underscores to underscores var
+var wordCheckArr = [];
 
    				function startGame () {
 
@@ -43,17 +26,19 @@ var lettersUsed = [];
 				//sending correct number of underscores to the game
 
 				spaces = underScores.join(" ");
+				console.log(spaces);
 				document.getElementById('blankWord').innerHTML = spaces;
+				document.getElementById('guessesleft').innerHTML=guessesLeft;
 
 
-			}
+			} //end of startgame function
 
-			//checks to see if a letter is pressed
+			//checks to see if a letter is pressed, 
 
 				document.onkeyup = function(event) {
 
 				var userInput = String.fromCharCode(event.keyCode).toLowerCase();
-
+				var wordCheck = randomWord.indexOf(userInput);
 
 
 		if (userInput === "a" || userInput === "b" || userInput === "c" || userInput === "d" || userInput === "e" || userInput === "f"
@@ -64,52 +49,47 @@ var lettersUsed = [];
 
 				document.getElementById('warning').innerHTML = "";
 
-			for (var i = 0; i< randomWord.length; i++)
+			//perform check on incorrect letter before any for loop.
 
-			{ //if the letter selected is in the random word, print that letter to the html page, log in lettersUsed
 
-				if (userInput === randomWord[i].toLowerCase()) {
+				if (wordCheck===-1) {
 
-					underScores.splice([i],1,userInput);
-					// lettersUsed.push(userInput);
-					spaces = underScores.join(" ");					
-					document.getElementById('blankWord').innerHTML = spaces;
-						console.log(underScores);
-						console.log(underScores.indexOf(userInput));
-		
+						wrongLetter.push(userInput);
+						reduced = Object.keys(wrongLetter.reduce((p,c) => (p[c] = true,p),{}));
+						noCommas = reduced.join(" ");
+						document.getElementById('letterbin').innerHTML = noCommas;
+						console.log(reduced + " reduced");
+						guessesLeft--;
+						console.log(guessesLeft +" guesses left");
+						document.getElementById('guessesleft').innerHTML=guessesLeft;
+
 
 				}
 
-			else { //if the letter selected is not in the randomWord and has not been guessed previously
-
-				if (wrongLetter.indexOf(userInput) ===-1 && underScores.indexOf(userInput) ===!-1)
-
-				{
-
-				wrongLetter.push(userInput);
-				noCommas = wrongLetter.join(" ");
-				document.getElementById('letterbin').innerHTML = noCommas;}
-	
-
-				
-
-			}
-
-			}
 
 
-		}
+				else{ //guess must be correct so publish to the page
 
 
-				//if not a letter sends a warning to the html
+				for (var i =0; i < randomWord.length; i++){
+
+					if(userInput===randomWord[i]){
+
+					underScores.splice([i],1,userInput);	
+					spaces = underScores.join(" ");					
+					document.getElementById('blankWord').innerHTML = spaces;
+					console.log(underScores + " underscores");}
+
+
+				}}}
 
 		else {
 
 					document.getElementById('warning').innerHTML = "This is a word guessing game, letters only please...";
-				}
+				
 				
 
-			};
+			}};
 
 
 
