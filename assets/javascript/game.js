@@ -62,6 +62,10 @@ var wordCheckArr = [];
 						guessesLeft--;
 						console.log(guessesLeft +" guesses left");
 						document.getElementById('guessesleft').innerHTML=guessesLeft;
+						if(guessesLeft===0){
+
+							alert("Game Over")
+						}
 
 
 				}
@@ -90,6 +94,12 @@ var wordCheckArr = [];
 				
 
 			}};
+
+
+
+
+
+
 
 
 

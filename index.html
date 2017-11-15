@@ -19,29 +19,31 @@
 
 	
 
-<div class="fixed-top bg-danger">H_ng M_n G_me</div>
+<div class="fixed-top bg-success">H_ng M_n G_me</div>
 
-<div class="jumbotron">
-  <h3 class="display-3">Time to Play Hang Man</h3>
+<div class="jumbotron bg-warning">
+  <h3 class="display-3 b">Time to Play Hang Man</h3>
   <p class="lead">This is the classic game of Hang Man. Guess the letters (and you can only guess letters) of the word below. For every incorrect guess you make you hang a little bit more.  Guess well and the best of luck!</p>
 
 </div>
 
 <div class="container">
 
-  <div class="row d-flex justify-content-around">
-    <div class="col text-center">
-    	<p>Letters Guessed:</p>
-    	<p id=letterbin></p>
-      
+  <div class="row d-flex d-flex justify-content-between">
+
+    <div class="col text-center bg-success mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+    	<h3>Letters Guessed:</h3>
+    	<h4 id=letterbin></h4>      
     </div>
-    <div class="col text-center">
-    	<p>Your Word:</p>
-    	<p id='blankWord'></p>
+
+    <div class="col text-center bg-warning mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+    	<h3>Your Word:</h3>
+    	<h4 id='blankWord'></h4>
     </div>
-    <div class="col text-center">
-      <p>Guesses Left:</p>
-      <p id='guessesleft'></p>
+
+    <div class="col text-center bg-danger mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+      <h3>Guesses Left:</h3>
+      <h4 id='guessesleft'></>
     </div>
   </div>
 </div>
@@ -56,7 +58,7 @@
 <div class="text-center"><h4 id='warning'></h4></div>
 </div>
 
-<nav class="navbar fixed-bottom navbar-dark bg-success justify-content-center">
+<nav class="navbar fixed-bottom navbar-dark bg-danger justify-content-center">
   <a class="navbar-brand">Mike Fields &copy 2017</a>
 </nav>
 
