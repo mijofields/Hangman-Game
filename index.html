@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- view port tag-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -21,9 +22,9 @@
 
 <div class="fixed-top bg-success">H_ng M_n G_me</div>
 
-<div class="jumbotron bg-warning">
-  <h3 class="display-3 b">Time to Play Hang Man</h3>
-  <p class="lead">This is the classic game of Hang Man. Guess the letters (and you can only guess letters) of the word below. For every incorrect guess you make you hang a little bit more.  Guess well and the best of luck!</p>
+<div class="jumbotron rasta">
+  <h3 class="display-3">Time to Play Hang Man</h3>
+  <p class="lead">This is the classic game of Hang Man. Guess the letters (and you can only guess letters) of the word below. For every incorrect guess you lose a life.  Guess well and the best of luck!</p>
 
 </div>
 
@@ -32,7 +33,7 @@
   <div class="row d-flex d-flex justify-content-between">
 
     <div class="col text-center bg-success mb-lg-0 mb-md-0 mb-sm-4 mb-4">
-    	<h3>Letters Guessed:</h3>
+    	<h3>Wrong Letters:</h3>
     	<h4 id=letterbin></h4>      
     </div>
 
@@ -49,7 +50,7 @@
 </div>
 
 
-
+<br><br>
 
 
 

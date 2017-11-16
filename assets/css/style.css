@@ -1,4 +1,4 @@
-h1, p{
+h1, h2, h3, h4, p{
 
 	font-family: 'Russo One', sans-serif;
 }
@@ -10,4 +10,15 @@ h1, p{
 	color: red;
 	text-decoration: underline;
 
+}
+
+body{
+
+	background-image:
+}
+
+.rasta{
+
+
+	(src= )
 }

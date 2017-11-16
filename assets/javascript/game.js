@@ -8,8 +8,7 @@ var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 var underScores = [];
 var wrongLetter = [];
 var guessesLeft = 7;
-var lettersUsed = [];
-var wordCheckArr = [];
+var lettersUsed = [];	
 
    				function startGame () {
 
@@ -41,6 +40,8 @@ var wordCheckArr = [];
 				var wordCheck = randomWord.indexOf(userInput);
 
 
+			
+
 		if (userInput === "a" || userInput === "b" || userInput === "c" || userInput === "d" || userInput === "e" || userInput === "f"
 		|| userInput === "g" || userInput === "h" || userInput === "i" || userInput === "j" || userInput === "k" 
         || userInput === "l" || userInput === "m" || userInput === "n" || userInput === "o" || userInput === "p" 
@@ -48,23 +49,27 @@ var wordCheckArr = [];
         || userInput === "v" || userInput === "w" || userInput === "x" || userInput === "y" || userInput === "z") {
 
 				document.getElementById('warning').innerHTML = "";
-
+				// lettersUsed.push(userInput);			
+				
 			//perform check on incorrect letter before any for loop.
 
 
 				if (wordCheck===-1) {
 
 						wrongLetter.push(userInput);
-						reduced = Object.keys(wrongLetter.reduce((p,c) => (p[c] = true,p),{}));
-						noCommas = reduced.join(" ");
+						// wrongLetter = Object.keys(wrongLetter.reduce((p,c) => (p[c] = true,p),{}));
+						wrongLetter = $.unique(wrongLetter);
+						noCommas = wrongLetter.join(" ");
 						document.getElementById('letterbin').innerHTML = noCommas;
-						console.log(reduced + " reduced");
+						console.log(wrongLetter + "wrongLetter");
+						var usedCheck = wrongLetter.indexOf(userInput);
+						console.log("used check" + usedCheck);
 						guessesLeft--;
 						console.log(guessesLeft +" guesses left");
 						document.getElementById('guessesleft').innerHTML=guessesLeft;
-						if(guessesLeft===0){
+						if(guessesLeft===1){
 
-							alert("Game Over")
+							document.getElementById('warning').innerHTML = "Careful now....";
 						}
 
 
