@@ -3,12 +3,14 @@
 
 var wordArray = ["pineapple", "gratification", "candidate", "tropical", "competence", "leftovers", "overwhelm", "psychology", "conversation", "broadcast"];
 var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+var randomWordArr = [randomWord];
 var underScores = [];
 var wrongLetter = [];
 var guessesLeft = 8;
 var lettersUsed = [];
 var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
-var correctGuesses = [];  				
+var correctGuesses = [];
+var matches = [];  				
 
    				function startGame () {
 
@@ -19,6 +21,7 @@ var correctGuesses = [];
         		    for (var i = 0; i < randomWord.length; i++)
 				{
 					underScores[i] = "_";
+					correctGuesses[i] = "";
 				}
 				//sending correct number of underscores to the game
 
@@ -45,6 +48,8 @@ var correctGuesses = [];
 				underScores=[];
 				guessesLeft = 8;
 				lettersUsed = [];
+				correctGuesses = [];
+				matches = [];  		
 				console.log("reset " + randomWord);
 				noCommas = wrongLetter.join(" ");
 				console.log(noCommas);
@@ -60,6 +65,7 @@ var correctGuesses = [];
 				$("#blankWord").text(spaces);
 				$("#guessesLeft").text(guessesLeft);
 				$("#letterbin").text(noCommas);
+				$("#warning").text("");
 
 
 
@@ -74,7 +80,7 @@ var correctGuesses = [];
 
 
 
-				if(guessesLeft<=0){
+				if(guessesLeft<=0 || matches===randomWord){
 
 					return;
 				}
@@ -100,7 +106,7 @@ var correctGuesses = [];
           			console.log("repeat letters "+	lettersUsed.indexOf(userInput));
 
 
-          			guessesLeft--; //why is this multiplying?
+          			guessesLeft--;
           			console.log("guesses left " + guessesLeft);
 
           				wrongLetter.push(userInput);
@@ -109,7 +115,6 @@ var correctGuesses = [];
           				lettersUsed = $.unique(lettersUsed);
 
           				console.log("letters used " + lettersUsed);
-          				// console.log("wrong letter " + wrongLetter);
 						noCommas = wrongLetter.join(" ");
 						$("#letterbin").text(noCommas);
 		
@@ -139,9 +144,10 @@ var correctGuesses = [];
 
           		else {
 
-          			
+
 
           			$("#warning").text("");
+
 
           			for (var i =0; i < randomWord.length; i++){
 
@@ -149,12 +155,27 @@ var correctGuesses = [];
 
 					lettersUsed.push(userInput);
           			lettersUsed = $.unique(lettersUsed);
+          			// userInput.push(correctGuesses); DAFUCK?
           			console.log("letters used " + lettersUsed);
 
-					underScores.splice([i],1,userInput);	
+
+					underScores.splice([i],1,userInput);
+					correctGuesses.splice([i],1,userInput);
+					matches = correctGuesses.join("");
+
+					console.log("correct guesses " + matches);
+
+          			// console.log("guess " + correctGuesses);
+          				
 					spaces = underScores.join(" ");					
 					$("#blankWord").text(spaces);
 					console.log(underScores + " underscores");
+
+
+					if(matches===randomWord){
+
+						$("#warning").text("Winner Winner Chicken Dinner! Hit Reset to play again")
+					}
 
 
           		}
