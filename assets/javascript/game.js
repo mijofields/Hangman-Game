@@ -7,21 +7,14 @@ var underScores = [];
 var wrongLetter = [];
 var guessesLeft = 8;
 var lettersUsed = [];
-var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
    				
 
    				function startGame () {
 
-   					console.log(randomWord);
-   					$("#warning").text(""); 
+   
+				console.log(randomWord);
 
-   					underScores = [];
-   					wrongLetter = [];
-   					guessesLeft = 8;
-   					lettersUsed=[];
-					var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
-					$("#letterbin").text("");
-					
 
         		    for (var i = 0; i < randomWord.length; i++)
 				{
@@ -33,9 +26,43 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 				console.log(spaces);
 				$("#blankWord").text(spaces);
 				$("#guessesLeft").text(guessesLeft);
+				$(".start").addClass( "disabled" );
 
 
 			} //end of startgame function
+
+
+
+			function reset(){
+
+
+
+			
+				randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+				wrongLetter = [];
+				space=[];
+				underScores=[];
+				guessesLeft = 8;
+				lettersUsed = [];
+				console.log("reset " + randomWord);
+				noCommas = wrongLetter.join(" ");
+				console.log(noCommas);
+
+						    for (var i = 0; i < randomWord.length; i++)
+				{
+					underScores[i] = "_";
+				}
+				//sending correct number of underscores to the game
+
+				spaces = underScores.join(" ");
+				console.log(spaces);
+				$("#blankWord").text(spaces);
+				$("#guessesLeft").text(guessesLeft);
+				$("#letterbin").text(noCommas);
+
+
+
+			}
  
 
 				document.onkeyup = function(event) {
@@ -43,6 +70,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 				var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 				var wordCheck = randomWord.indexOf(userInput);
 				console.log("word check " + wordCheck);
+
 
 
 
@@ -65,7 +93,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
           			console.log("repeat letters "+	lettersUsed.indexOf(userInput));
 
 
-          			guessesLeft--;
+          			guessesLeft--; //why is this multiplying?
           			console.log("guesses left " + guessesLeft);
 
           				wrongLetter.push(userInput);
@@ -74,6 +102,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
           				lettersUsed = $.unique(lettersUsed);
 
           				console.log("letters used " + lettersUsed);
+          				// console.log("wrong letter " + wrongLetter);
 						noCommas = wrongLetter.join(" ");
 						$("#letterbin").text(noCommas);
 		
@@ -81,7 +110,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 						if(guessesLeft===1){
 
-							document.getElementById('warning').innerHTML = "Careful now....";
+							document.getElementById('warning').innerHTML = "Careful now, you're close to losing....";
 						}
 
 
@@ -135,9 +164,16 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 
 
-		$(".start").on("click", function(){ startGame(); });
-
-          		
 
 
 
+
+
+
+
+
+			// startGame();
+
+
+$(".start").click(function(){ startGame(); });
+$(".reset").click(function(){reset(); });
