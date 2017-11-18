@@ -10,7 +10,10 @@ var guessesLeft = 8;
 var lettersUsed = [];
 var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
 var correctGuesses = [];
-var matches = [];  				
+var matches = [];
+var winCount =0;
+var lossCount=0;
+
 
    				function startGame () {
 
@@ -96,6 +99,7 @@ var matches = [];
         		$("#warning").text("This is a word guessing game, letters only please...");
 
 
+
         }
 
 
@@ -131,6 +135,8 @@ var matches = [];
 						if(guessesLeft===0){
 
 							$("#warning").text("You lose!!! Hit Reset to try again.");
+							lossCount++;
+							$("#losses").text(lossCount);
 							return;
 
 						}
@@ -178,6 +184,8 @@ var matches = [];
 					if(matches===randomWord){
 
 						$("#warning").text("Winner Winner Chicken Dinner! Hit Reset to play again")
+						winCount++;
+						$("#wins").text(winCount);
 					}
 
 
