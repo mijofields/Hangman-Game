@@ -8,7 +8,7 @@ var wrongLetter = [];
 var guessesLeft = 8;
 var lettersUsed = [];
 var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y", "z"];
-   				
+var correctGuesses = [];  				
 
    				function startGame () {
 
@@ -40,6 +40,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 			
 				randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 				wrongLetter = [];
+				correctGuesses=[];
 				space=[];
 				underScores=[];
 				guessesLeft = 8;
@@ -73,8 +74,14 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 
 
+				if(guessesLeft<=0){
 
-        if (correctLetters.indexOf(userInput)===-1) {
+					return;
+				}
+
+
+
+        if (correctLetters.indexOf(userInput)===-1 && guessesLeft >=0) {
 
 
         		$("#warning").text("This is a word guessing game, letters only please...");
@@ -84,7 +91,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 
 
-          		else if (wordCheck ===-1 && lettersUsed.indexOf(userInput)===-1){
+          		else if (wordCheck ===-1 && lettersUsed.indexOf(userInput)===-1 && guessesLeft >= 0){
 
           			$("#warning").text("");
 
@@ -110,7 +117,14 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 						if(guessesLeft===1){
 
-							document.getElementById('warning').innerHTML = "Careful now, you're close to losing....";
+							$("#warning").text("Careful now, you're close to losing....");
+						}
+
+						if(guessesLeft===0){
+
+							$("#warning").text("You lose!!! Hit Reset to try again.");
+							return;
+
 						}
 
 
@@ -121,7 +135,11 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
           		}//end of else if
 
 
+
+
           		else {
+
+          			
 
           			$("#warning").text("");
 
@@ -139,11 +157,7 @@ var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 					console.log(underScores + " underscores");
 
 
-
           		}
-
-
-
 
 
 
