@@ -48,7 +48,6 @@ var lossCount=0;
 				wrongLetter = [];
 				correctGuesses=[];
 				underScores=[];
-				spaces = underScores.join(" ");
 				guessesLeft = 8;
 				lettersUsed = [];
 				// correctGuesses = [];
@@ -62,6 +61,7 @@ var lossCount=0;
 					correctGuesses[i] = "";
 				}
 				//sending correct number of underscores to the game
+				spaces = underScores.join(" ");
 
 				
 				console.log("spaces " + spaces);
