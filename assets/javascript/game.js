@@ -44,24 +44,27 @@ var matches = [];
 				randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 				wrongLetter = [];
 				correctGuesses=[];
-				space=[];
 				underScores=[];
+				spaces = underScores.join(" ");
 				guessesLeft = 8;
 				lettersUsed = [];
-				correctGuesses = [];
+				// correctGuesses = [];
 				matches = [];  		
 				console.log("reset " + randomWord);
 				noCommas = wrongLetter.join(" ");
-				console.log(noCommas);
 
 						    for (var i = 0; i < randomWord.length; i++)
 				{
 					underScores[i] = "_";
+					correctGuesses[i] = "";
 				}
 				//sending correct number of underscores to the game
 
-				spaces = underScores.join(" ");
-				console.log(spaces);
+				
+				console.log("spaces " + spaces);
+				console.log("underscore" + underScores);
+				console.log("correctGuesses" + correctGuesses);
+					
 				$("#blankWord").text(spaces);
 				$("#guessesLeft").text(guessesLeft);
 				$("#letterbin").text(noCommas);
