@@ -1,22 +1,27 @@
 
-
-
 // set variables
 
 var wordArray = ["pineapple", "gratification", "candidate", "tropical", "competence", "leftovers", "overwhelm", "psychology", "conversation", "broadcast"];
 var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 var underScores = [];
 var wrongLetter = [];
-var guessesLeft = 7;
-var lettersUsed = [];	
+var guessesLeft = 8;
+var lettersUsed = [];
+var correctLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+   				
 
    				function startGame () {
 
-   					console.log(randomWord); 
+   					console.log(randomWord);
+   					$("#warning").text(""); 
 
    					underScores = [];
    					wrongLetter = [];
-   					guessesLeft = 7;
+   					guessesLeft = 8;
+   					lettersUsed=[];
+					var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+					$("#letterbin").text("");
+					
 
         		    for (var i = 0; i < randomWord.length; i++)
 				{
@@ -26,86 +31,113 @@ var lettersUsed = [];
 
 				spaces = underScores.join(" ");
 				console.log(spaces);
-				document.getElementById('blankWord').innerHTML = spaces;
-				document.getElementById('guessesleft').innerHTML=guessesLeft;
+				$("#blankWord").text(spaces);
+				$("#guessesLeft").text(guessesLeft);
 
 
 			} //end of startgame function
-
-			//checks to see if a letter is pressed, 
+ 
 
 				document.onkeyup = function(event) {
 
 				var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 				var wordCheck = randomWord.indexOf(userInput);
+				console.log("word check " + wordCheck);
 
 
-			
 
-		if (userInput === "a" || userInput === "b" || userInput === "c" || userInput === "d" || userInput === "e" || userInput === "f"
-		|| userInput === "g" || userInput === "h" || userInput === "i" || userInput === "j" || userInput === "k" 
-        || userInput === "l" || userInput === "m" || userInput === "n" || userInput === "o" || userInput === "p" 
-        || userInput === "q" || userInput === "r" || userInput === "s" || userInput === "t" || userInput === "u" 
-        || userInput === "v" || userInput === "w" || userInput === "x" || userInput === "y" || userInput === "z") {
-
-				document.getElementById('warning').innerHTML = "";
-				// lettersUsed.push(userInput);			
-				
-			//perform check on incorrect letter before any for loop.
+        if (correctLetters.indexOf(userInput)===-1) {
 
 
-				if (wordCheck===-1) {
+        		$("#warning").text("This is a word guessing game, letters only please...");
 
-						wrongLetter.push(userInput);
-						// wrongLetter = Object.keys(wrongLetter.reduce((p,c) => (p[c] = true,p),{}));
-						wrongLetter = $.unique(wrongLetter);
+
+        }
+
+
+
+          		else if (wordCheck ===-1 && lettersUsed.indexOf(userInput)===-1){
+
+          			$("#warning").text("");
+
+
+
+          			console.log("repeat letters "+	lettersUsed.indexOf(userInput));
+
+
+          			guessesLeft--;
+          			console.log("guesses left " + guessesLeft);
+
+          				wrongLetter.push(userInput);
+          				wrongLetter = $.unique(wrongLetter);
+          				lettersUsed.push(userInput);
+          				lettersUsed = $.unique(lettersUsed);
+
+          				console.log("letters used " + lettersUsed);
 						noCommas = wrongLetter.join(" ");
-						document.getElementById('letterbin').innerHTML = noCommas;
-						console.log(wrongLetter + "wrongLetter");
-						var usedCheck = wrongLetter.indexOf(userInput);
-						console.log("used check" + usedCheck);
-						guessesLeft--;
-						console.log(guessesLeft +" guesses left");
-						document.getElementById('guessesleft').innerHTML=guessesLeft;
+						$("#letterbin").text(noCommas);
+		
+						$("#guessesLeft").text(guessesLeft);
+
 						if(guessesLeft===1){
 
 							document.getElementById('warning').innerHTML = "Careful now....";
 						}
 
 
-				}
 
 
 
-				else{ //guess must be correct so publish to the page
+
+          		}//end of else if
 
 
-				for (var i =0; i < randomWord.length; i++){
+          		else {
+
+          			$("#warning").text("");
+
+          			for (var i =0; i < randomWord.length; i++){
 
 					if(userInput===randomWord[i]){
 
+					lettersUsed.push(userInput);
+          			lettersUsed = $.unique(lettersUsed);
+          			console.log("letters used " + lettersUsed);
+
 					underScores.splice([i],1,userInput);	
 					spaces = underScores.join(" ");					
-					document.getElementById('blankWord').innerHTML = spaces;
-					console.log(underScores + " underscores");}
+					$("#blankWord").text(spaces);
+					console.log(underScores + " underscores");
 
 
-				}}}
 
-		else {
-
-					document.getElementById('warning').innerHTML = "This is a word guessing game, letters only please...";
-				
-				
-
-			}};
+          		}
 
 
 
 
 
 
+          		};
 
 
 
-			startGame();
+
+
+
+          	}
+
+}
+
+;
+
+
+
+
+
+		$(".start").on("click", function(){ startGame(); });
+
+          		
+
+
+

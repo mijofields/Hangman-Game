@@ -6,19 +6,17 @@ h1, h2, h3, h4, p{
 
 #warning{
 
-	font-family: 'Permanent Marker', cursive;
-	color: red;
+	font-family: 'Ubuntu', sans-serif;
+	color: white;
+	font-weight: bold;
 	text-decoration: underline;
 
 }
 
+
+
 body{
 
-	background-image:
-}
 
-.rasta{
-
-
-	(src= )
+	background-image: url(https://github.com/mijofields/Hangman-Game/blob/master/assets/images/8foTnpS.png?raw=true);
 }
