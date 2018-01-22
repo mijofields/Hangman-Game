@@ -3,7 +3,7 @@
 
 
 
-var wordArray = [{a:"pineapple", clue: "A large sweet tropical fruit"}, {a:"vegetarian", clue: "owe who does not consume meat"}, {a: "candidate", clue: "someone running for election"}, {a: "knowledge", clue: "gained through experience or education"}, 
+var wordArray = [{a:"pineapple", clue: "A large sweet tropical fruit"}, {a:"vegetarian", clue: "one who does not consume meat"}, {a: "candidate", clue: "someone running for election"}, {a: "knowledge", clue: "gained through experience or education"}, 
 				{a: "jamaica", clue: "a fast island in the carribean"}, {a: "crocodile", clue: "these reptiles can bite"}, {a: "conversation", clue: "a spoken exchange of ideas"}, {a: "rastafari", clue: "a new religious and social movement"}, 
 				{a: "dreadlocks", clue: "a long ropelike hairstyle"}];
 
